@@ -2,3 +2,4 @@ test-*
 *.txt
 .idea
 *.zip
+.DS_Store
