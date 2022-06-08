@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="de">
 
@@ -7,34 +10,23 @@
     <script defer src="https://pro.fontawesome.com/releases/v5.10.0/js/all.js" integrity="sha384-G/ZR3ntz68JZrH4pfPJyRbjW+c0+ojii5f+GYiYwldYU69A+Ejat6yIfLSxljXxD" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/snake-style.css">
+    <link rel="stylesheet" href="./css/profile-style.css">
     <script defer src="./js/script.js"></script>
+    <style>
+
+    </style>
 </head>
 
 <body>
-    <div class="container">
+    <h1 class="bg-screen-name">SETTINGS</h1>
+    <h1 class="bg-screen-name-trans">SETTINGS</h1>
 
-
-
-    </div>
-    <div class="big-box">
+    <div class="main">
+        <div class="settings-box"><h2 style="margin-left:10px;"><?php echo $_SESSION["username"] ?></h2></div>
+        <h1>Comming soon</h1>
         <div id="bottom-bt">
-            <h1 id="bt-play" onclick="location.href = 'index.html';">Play</h1>
-        </div>
-        score
-    </div>
-    <div class="grid2x2">
-        <div class="box box1">
-            <div>one</div>
-        </div>
-        <div class="box box2">
-            <div>two</div>
-        </div>
-        <div class="box box3">
-            <div>three</div>
-        </div>
-        <div class="box box4">
-            <div>four</div>
+            <h1 id="bt-play" onclick="location.href = 'index.php';">Back</h1>
+            <h1 id="bt-out" onclick="<?php $_SESSION['logout'] = 1?>location.href = 'snake-form.php';">Logout</h1>
         </div>
     </div>
 

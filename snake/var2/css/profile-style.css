@@ -1,0 +1,163 @@
+@font-face {
+    font-family: "game";
+    src: url("https://fonts.googleapis.com/css2?family=Poppins:wght@500;800&display=swap");
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+button:focus {
+    outline: 0;
+}
+
+html,
+body {
+    height: 100vh;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+body {
+    background: rgba(18, 18, 18, 0.96);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-family: 'Montserrat', sans-serif;
+    height: 100vh;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.bg-screen-name,
+.bg-screen-name-trans {
+    position: absolute;
+    top: 5vh;
+    font-size: 20vh;
+    color: transparent;
+}
+
+.bg-screen-name-trans {
+    color: rgba(255, 255, 255, 0.1);
+    z-index: 10;
+}
+
+.settings-box {
+    position: absolute;
+    display: flex;
+    top: -5vh;
+    left: 5vw;
+    width: 18vw;
+    height: 8vh;
+    background: #fff;
+    transform: rotate(4deg);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    color: #000;
+    justify-content: left;
+    align-items: center;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    position: absolute;
+    bottom: 15vh;
+    width: 70vw;
+    height: 60vh;
+    background: #000;
+    position: absolute;
+    padding: 40px;
+    transform: rotate(-3deg);
+    color: #000;
+}
+
+.main>h1 {
+    color: rgba(255, 255, 255, 0.7);
+    transform: rotate(-25deg);
+    font-weight: 200;
+    font-size: 10vh;
+}
+
+.profile-box {
+    background-color: black;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+#bottom-bt {
+    bottom: 25px;
+    right: 25px;
+    position: absolute;
+}
+
+#bt-play {
+    display: inline-block;
+    font-size: 20px !important;
+    margin: 0px !important;
+    border-radius: 30px;
+    background: linear-gradient(270deg, #390099, #9e0059, #ff0054, #ff5400, #ffbd00);
+    background-size: 1000% 1000%;
+    -webkit-animation: bg-fade 30s ease infinite;
+    -moz-animation: bg-fade 30s ease infinite;
+    animation: bg-fade 30s ease infinite;
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+}
+
+#bt-out {
+    display: inline-block;
+    font-size: 20px !important;
+    margin: 0px !important;
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
+    font-weight: bold;
+    padding: 12px 45px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    cursor: pointer;
+}
+
+@-webkit-keyframes bg-fade {
+    0% {
+        background-position: 0% 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@-moz-keyframes bg-fade {
+    0% {
+        background-position: 0% 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%
+    }
+}
+
+@keyframes bg-fade {
+    0% {
+        background-position: 0% 50%
+    }
+    50% {
+        background-position: 100% 50%
+    }
+    100% {
+        background-position: 0% 50%
+    }
+}

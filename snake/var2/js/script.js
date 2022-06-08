@@ -9,6 +9,9 @@ let dom_canvas = document.createElement("canvas");
 document.querySelector("#canvas").appendChild(dom_canvas);
 let CTX = dom_canvas.getContext("2d");
 
+let testData;
+let maxScoreReturn;
+
 const W = (dom_canvas.width = 400);
 const H = (dom_canvas.height = 400);
 
@@ -16,9 +19,9 @@ let snake,
     food,
     food2,
     food3,
-    food4,
-    food5,
-    food6,
+    //food4,
+    //food5,
+    //food6,
     currentHue,
     cells = 20,
     cellSize,
@@ -193,7 +196,7 @@ class Snake {
             for (let i = 0; i < this.history.length - 1; i++) {
                 let { x, y } = this.history[i];
                 CTX.lineWidth = 1;
-                CTX.fillStyle = "rgba(0,0,0,.8)"; //Snake Tail
+                CTX.fillStyle = "rgba(210,110,0,1)"; //Snake Tail
                 CTX.fillRect(x, y, this.size, this.size);
             }
         }
@@ -259,7 +262,7 @@ class Snake {
                 food3.spawn();
                 this.total++;
             }
-            if (helpers.isCollision(this.pos, food4.pos)) {
+            /*if (helpers.isCollision(this.pos, food4.pos)) {
                 incrementScore();
                 particleSplash(food4);
                 food4.spawn();
@@ -276,7 +279,7 @@ class Snake {
                 particleSplash(food6);
                 food6.spawn();
                 this.total++;
-            }
+            }*/
             this.history[this.total - 1] = new helpers.Vec(this.pos.x, this.pos.y);
             for (let i = 0; i < this.total - 1; i++) {
                 this.history[i] = this.history[i + 1];
@@ -357,12 +360,6 @@ function incrementScore() {
 }*/
 function incrementScore() {
     score++;
-    /*let myString = "";
-    scoreString = score.toString().padStart(3, "0");
-    for (let i = 0; i < 500; i++) {
-      myString += scoreString + "-";
-    }
-    dom_score.innerText = myString;*/
     dom_score.innerText = score.toString().padStart(3, "0");
 }
 
@@ -375,6 +372,22 @@ function particleSplash(foodItem) {
 }
 
 function clear() {
+    var url = './php/maxScore.php';
+    var formData = new FormData();
+    formData.append('userid', userid);
+
+    let testData;
+
+    fetch(url, { method: 'POST', body: formData })
+        .then(function(response) {
+            return response.text();
+        })
+        .then(function(data) {
+            maxScoreReturn = data;
+            maxScore = maxScoreReturn;
+            window.localStorage.setItem("maxScore", maxScore);
+            document.getElementById('highscore').innerHTML = maxScore;
+        });
     CTX.clearRect(0, 0, W, H);
 }
 
@@ -387,9 +400,9 @@ function initialize() {
     food = new Food();
     food2 = new Food();
     food3 = new Food();
-    food4 = new Food();
-    food5 = new Food();
-    food6 = new Food();
+    //food4 = new Food();
+    //food5 = new Food();
+    //food6 = new Food();
     dom_replay.addEventListener("click", reset, false);
     loop();
 }
@@ -397,15 +410,15 @@ function initialize() {
 function loop() {
     clear();
     if (!isGameOver) {
-        requestID = setTimeout(loop, 1000 / 90);
+        requestID = setTimeout(loop, 1000 / 45);
         helpers.drawGrid();
         snake.update();
         food.draw();
         food2.draw();
         food3.draw();
-        food4.draw();
-        food5.draw();
-        food6.draw();
+        //food4.draw();
+        //food5.draw();
+        //food6.draw();
         for (let p of particles) {
             p.update();
         }
@@ -417,18 +430,48 @@ function loop() {
 }
 
 function gameOver() {
-    console.log("Hallo");
+    var url = './php/scoreUpdate.php';
+    var formData = new FormData();
+    formData.append('score', score);
+    formData.append('userid', userid);
+
+    fetch(url, { method: 'POST', body: formData })
+        .then(function(response) {
+            return response.text();
+        })
+        .then(function(body) {});
+
     dom_replay.style.display = "block";
-    maxScore ? null : (maxScore = score);
-    score > maxScore ? (maxScore = score) : null;
-    window.localStorage.setItem("maxScore", maxScore);
-    CTX.fillStyle = "rgba(18, 18, 18, 0.5)";
+
+
+    var url = './php/maxScore.php';
+    var formData = new FormData();
+    formData.append('userid', userid);
+
+    let testData;
+
+    fetch(url, { method: 'POST', body: formData })
+        .then(function(response) {
+            return response.text();
+        })
+        .then(function(data) {
+            maxScoreReturn = data;
+            maxScore = maxScoreReturn;
+            window.localStorage.setItem("maxScore", maxScore);
+            document.getElementById('highscore').innerHTML = maxScore;
+        });
+
+
+
+    CTX.fillStyle = "rgba(255, 255, 255, 0.7)";
     CTX.textAlign = "center";
     CTX.font = "bold 30px Poppins, sans-serif";
+
     CTX.fillText("GAME OVER", W / 2, H / 2);
-    CTX.font = "15px Poppins, sans-serif";
-    CTX.fillText(`SCORE   ${score}`, W / 2, H / 2 + 60);
-    CTX.fillText(`MAXSCORE   ${maxScore}`, W / 2, H / 2 + 80);
+
+
+
+
 }
 
 function reset() {
@@ -438,9 +481,6 @@ function reset() {
     food.spawn();
     food2.spawn();
     food3.spawn();
-    food4.spawn();
-    food5.spawn();
-    food6.spawn();
     KEY.resetState();
     dom_replay.style.display = "none";
     isGameOver = false;

@@ -7,7 +7,7 @@
     <script defer src="https://pro.fontawesome.com/releases/v5.10.0/js/all.js" integrity="sha384-G/ZR3ntz68JZrH4pfPJyRbjW+c0+ojii5f+GYiYwldYU69A+Ejat6yIfLSxljXxD" crossorigin="anonymous"></script>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./css/form-style.css">
+    <link rel="stylesheet" href="../css/form-style.css">
     <script defer src="./js/form-script.js"></script>
 
 </head>
@@ -18,11 +18,11 @@
             <form method="POST" action="snake-form.php">
                 <h1>Create Account</h1>
                 <!-- <span>or use your email for registration</span> -->
-                <input type="text" placeholder="Name" />
-                <input type="email" placeholder="Email" />
-                <input type="password" placeholder="Password" />
+                <input name="createName" type="text" placeholder="Name" />
+                <input name="createMail" type="email" placeholder="Email" />
+                <input name="createPass" type="password" placeholder="Password" />
                 <a href="./index.html">Continue without registration</a>
-                <button name="signup">Sign Up</button>
+                <button type="submit" name="signup">Sign Up</button>
             </form>
         </div>
         <div class="form-container sign-in-container">
@@ -31,7 +31,7 @@
                 <input type="email" placeholder="Email" />
                 <input type="password" placeholder="Password" />
                 <a href="./index.html">Continue without registration</a>
-                <button name="signin">Sign In</button>
+                <button type="submit" name="signin">Sign In</button>
             </form>
         </div>
         <div class="overlay-container">
